@@ -120,7 +120,6 @@ class User
   {
     $sql = "UPDATE user_login SET
     password = ?,
-    change = 2,
     updated = NOW()
     WHERE id = ?";
     $stmt = $this->dbcon->prepare($sql);

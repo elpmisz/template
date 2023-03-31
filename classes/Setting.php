@@ -33,4 +33,13 @@ class Setting
     $stmt->execute();
     return $stmt->fetch();
   }
+
+  public function password_default()
+  {
+    $sql = "SELECT default_password FROM setting";
+    $stmt = $this->dbcon->prepare($sql);
+    $stmt->execute();
+    $row = $stmt->fetch();
+    return (!empty($row['default_password']) ? $row['default_password'] : "");
+  }
 }

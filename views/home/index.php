@@ -9,7 +9,7 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
     <div class="col-xl-12">
       <div class="card shadow">
         <div class="card-header">
-          <h4 class="text-center">XXXX</h4>
+          <h4 class="text-center">ตารางงาน</h4>
         </div>
         <div class="card-body">
 

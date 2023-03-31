@@ -95,13 +95,13 @@ foreach ($result as $row) {
     $image = "<img src='/assets/img/profile/no-img.png' class='img-fluid rounded mx-auto d-block shadow'>";
   endif;
   $data[] = [
-    0 => $status,
-    1 => $image,
-    2 => $row['fullname'],
-    3 => $row['username'],
-    4 => $row['email'],
-    5 => $row['contact'],
-    6 => $level,
+    $status,
+    $level,
+    $image,
+    $row['username'],
+    $row['fullname'],
+    $row['email'],
+    $row['contact'],
   ];
 }
 

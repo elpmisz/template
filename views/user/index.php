@@ -30,12 +30,12 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
                   <thead>
                     <tr>
                       <th width="10%">#</th>
+                      <th width="10%">สิทธิ์</th>
                       <th width="10%">รูป</th>
-                      <th width="20%">ชื่อ - นามสกุล</th>
                       <th width="10%">ชื่อผู้ใช้ระบบ</th>
+                      <th width="20%">ชื่อ - นามสกุล</th>
                       <th width="10%">อีเมล</th>
                       <th width="20%">ติดต่อ</th>
-                      <th width="10%">สิทธิ์</th>
                     </tr>
                   </thead>
                 </table>
@@ -65,7 +65,7 @@ include_once(__DIR__ . "/../../includes/footer.php");
         type: "POST",
       },
       columnDefs: [{
-        targets: [0, 3, 4, 6],
+        targets: [0, 1, 2, 3],
         className: "text-center",
       }],
       oLanguage: {

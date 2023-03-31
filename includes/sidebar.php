@@ -11,13 +11,13 @@ $group = (!empty($group) ? $group : "");
       </a>
       <ul id="report" class="nav-content <?php echo ($group === "report" ? "show" : "collapse") ?>">
         <li>
-          <a class="nav-link <?php echo ($page === "borrow" ? "active" : "collapsed") ?>" href="/home">
-            <i class="fa fa-circle"></i> <span>รายงานการเบิก</span>
+          <a class="nav-link <?php echo ($page === "aaa" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>AAA</span>
           </a>
         </li>
         <li>
-          <a class="nav-link <?php echo ($page === "item" ? "active" : "collapsed") ?>" href="/item">
-            <i class="fa fa-circle"></i> <span>รายงานอุปกรณ์</span>
+          <a class="nav-link <?php echo ($page === "bbb" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>BBB</span>
           </a>
         </li>
       </ul>
@@ -42,8 +42,48 @@ $group = (!empty($group) ? $group : "");
       </a>
       <ul id="service" class="nav-content <?php echo ($group === "service" ? "show" : "collapse") ?>">
         <li>
-          <a class="nav-link <?php echo ($page === "borrow" ? "active" : "collapsed") ?>" href="/borrow">
-            <i class="fa fa-circle"></i> <span>ระบบเบิกสินค้าตัวอย่าง</span>
+          <a class="nav-link <?php echo ($page === "helpdesk" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>ระบบแจ้งปัญหา</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "knowledge" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>ระบบการเรียนรู้ด้วยตัวเอง</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "meeting" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>จองห้องประชุม</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "reserve" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>จองรถ</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "preventive" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>ระบบบำรุงรักษาอุปกรณ์</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "event" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>ระบบประชาสัมพันธ์</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "form" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>ระบบรายการตรวจสอบ</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "document" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>ระบบจัดการเอกสาร</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "inventory" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>ระบบเบิกวัสดุ - อุปกรณ์</span>
           </a>
         </li>
       </ul>
@@ -58,6 +98,16 @@ $group = (!empty($group) ? $group : "");
         <li>
           <a class="nav-link <?php echo ($page === "users" ? "active" : "collapsed") ?>" href="/users">
             <i class="fa fa-circle"></i> <span>ข้อมูลผู้ใช้งาน</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "asset" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>ข้อมูลทรัพย์สิน</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link <?php echo ($page === "inventory" ? "active" : "collapsed") ?>" href="/home">
+            <i class="fa fa-circle"></i> <span>ข้อมูลวัสดุ - อุปกรณ์</span>
           </a>
         </li>
         <li>

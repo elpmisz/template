@@ -45,7 +45,7 @@ if ($method === "POST" && $action === "login") :
 
     $_SESSION['login_id'] = $User->login_id([$username]);
 
-    $Validation->alert("success", "ยินดีต้อนรับ", "/user/profile");
+    $Validation->alert("success", "ยินดีต้อนรับ", "/home");
   } catch (PDOException $e) {
     die($e->getMessage());
   }

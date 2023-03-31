@@ -53,7 +53,13 @@ $Router->map("POST", "/users/data", function () {
 $Router->map("GET", "/users/create", function () {
   require(__DIR__ . "/views/user/create.php");
 });
+$Router->map("GET", "/users/view/[**:params]", function ($params) {
+  require __DIR__ . "/views/user/view.php";
+});
 $Router->map("POST", "/user/[**:params]", function ($params) {
+  require __DIR__ . "/views/user/action.php";
+});
+$Router->map("GET", "/user/[**:params]", function ($params) {
   require __DIR__ . "/views/user/action.php";
 });
 
