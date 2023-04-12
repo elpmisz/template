@@ -7,17 +7,19 @@ ini_set("display_errors", "1");
 ini_set("display_startup_errors", "1");
 error_reporting(E_ALL);
 
-require_once(__DIR__ . "/../../includes/connection.php");
+require_once(__DIR__ . "/../../../../includes/connection.php");
 require_once(__DIR__ . "/../../vendor/autoload.php");
 
 $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "");
 
-$sql = "SELECT COUNT(*) FROM user_login";
+$sql = "SELECT COUNT(*) FROM asset_checklist";
 $stmt = $dbcon->prepare($sql);
 $stmt->execute();
 $count = $stmt->fetchColumn();
 
-$column = ["A.status", "A.id", "B.first_name", "A.username", "B.email", "A.level"];
+$column = ["id", "name", "id"];
+
+$reference = (isset($_POST['reference']) ? $_POST['reference'] : "");
 
 $keyword = (isset($_POST['search']['value']) ? $_POST['search']['value'] : "");
 $order = (isset($_POST['order']) ? $_POST['order'] : "");
@@ -27,50 +29,38 @@ $limit_start = (isset($_POST['start']) ? $_POST['start'] : "");
 $limit_length = (isset($_POST['length']) ? $_POST['length'] : "");
 $draw = (isset($_POST['draw']) ? $_POST['draw'] : "");
 
-$sql = "SELECT B.picture,CONCAT(B.first_name,' ',B.last_name) fullname,B.email,B.contact,
-A.id login_id,A.username,
-(
-  CASE
-    WHEN A.level = 1 THEN 'ผู้ใช้งานระบบ'
-    WHEN A.level = 9 THEN 'ผู้ดูแลระบบ'
-    ELSE NULL 
-  END
-) level_name,
-(
-  CASE
-    WHEN A.level = 1 THEN 'success'
-    WHEN A.level = 9 THEN 'danger'
-    ELSE NULL 
-  END
-) level_color,
+$sql = "SELECT A.id,A.name,B.name reference_name,
 (
   CASE
     WHEN A.status = 1 THEN 'รายละเอียด'
     WHEN A.status = 2 THEN 'ระงับการใช้งาน'
-    ELSE NULL 
+    ELSE NULL
   END
 ) status_name,
 (
   CASE
     WHEN A.status = 1 THEN 'primary'
     WHEN A.status = 2 THEN 'danger'
-    ELSE NULL 
+    ELSE NULL
   END
 ) status_color
-FROM user_login A
-LEFT JOIN user_detail B
-ON A.id = B.login_id
+FROM asset_checklist A 
+LEFT JOIN asset_checklist B
+ON A.reference = B.id
 WHERE A.id != '' ";
 
-
 if ($keyword) {
-  $sql .= " AND (B.first_name LIKE '%{$keyword}%' OR B.last_name LIKE '%{$keyword}%' OR B.email LIKE '%{$keyword}%' OR B.contact LIKE '%{$keyword}%') ";
+  $sql .= " AND (A.name LIKE '%{$keyword}%' OR B.name LIKE '%{$keyword}%') ";
+}
+
+if ($reference) {
+  $sql .= " AND (A.id = '{$reference}' OR A.reference = '{$reference}') ";
 }
 
 if ($order) {
   $sql .= "ORDER BY {$column[$order_column]} {$order_dir} ";
 } else {
-  $sql .= "ORDER BY A.status ASC, A.created ASC ";
+  $sql .= "ORDER BY A.status ASC, A.type ASC, A.created ASC ";
 }
 
 $query = "";
@@ -87,21 +77,11 @@ $result = $stmt->fetchAll();
 
 $data = [];
 foreach ($result as $row) {
-  $level = "<span class='badge text-bg-{$row['level_color']} fw-lighter'>{$row['level_name']}</span>";
-  $status = "<a href='/users/view/{$row['login_id']}' class='badge text-bg-{$row['status_color']} fw-lighter'>{$row['status_name']}</a>";
-  if (!empty($row['picture'])) :
-    $image = "<img src='/assets/img/profile/{$row['picture']}' class='img-fluid rounded mx-auto d-block shadow'>";
-  else :
-    $image = "<img src='/assets/img/profile/no-img.png' class='img-fluid rounded mx-auto d-block shadow'>";
-  endif;
+  $status = "<a href='/asset/checklist/view/{$row['id']}' class='badge text-bg-{$row['status_color']} fw-lighter'>{$row['status_name']}</a>";
   $data[] = [
     $status,
-    $level,
-    $image,
-    $row['username'],
-    $row['fullname'],
-    $row['email'],
-    $row['contact'],
+    $row['name'],
+    $row['reference_name']
   ];
 }
 

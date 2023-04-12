@@ -79,6 +79,28 @@ $row = $User->view([$id]);
               </div>
             </div>
 
+            <div class="row mb-2">
+              <label class="col-xl-4 col-md-4 col-form-label text-xl-end">ระดับการใช้งาน</label>
+              <div class="col-xl-4 col-md-4">
+                <select class="form-control form-control-sm level_select" name="level">
+                  <option value="">-- เลือก --</option>
+                  <?php
+                  $arr = [
+                    1 => "ผู้ใช้งาน",
+                    9 => "ผู้ดูแลระบบ"
+                  ];
+                  foreach ($arr as $key => $value) {
+                    echo "<option value='{$key}' " . ($row['level'] === $key ? "selected" : "") . ">{$value}</option>\n";
+                  }
+                  unset($key, $value);
+                  ?>
+                </select>
+                <div class="invalid-feedback">
+                  กรุณาใส่ข้อมูลให้ครบ
+                </div>
+              </div>
+            </div>
+
             <div class="row justify-content-center mb-2">
               <div class="col-xl-3 col-md-6">
                 <button type="submit" class="btn btn-primary btn-sm w-100">
@@ -86,7 +108,12 @@ $row = $User->view([$id]);
                 </button>
               </div>
               <div class="col-xl-3 col-md-6">
-                <a href="/user/passwordreset/<?php echo $row['login_id'] ?>" class="btn btn-danger btn-sm w-100">
+                <a href="/users" class="btn btn-danger btn-sm w-100">
+                  <i class="fas fa-arrow-left pe-2"></i>กลับหน้าหลัก
+                </a>
+              </div>
+              <div class="col-xl-3 col-md-6">
+                <a href="javascript:void(0)" class="btn btn-success btn-sm w-100 btn-default">
                   <i class="fas fa-lock pe-2"></i>รหัสผ่านตั้งต้น
                 </a>
               </div>
@@ -131,5 +158,32 @@ include_once(__DIR__ . "/../../includes/footer.php");
       $(".show-image").prop("src", url);
       URL.revokeObjectURL($(".show-image").prop("src", url));
     }
+  });
+
+  $(document).on("click", ".btn-default", function(e) {
+    let login = $("input[name='login_id']").val();
+    e.preventDefault();
+    Swal.fire({
+      title: "ยืนยันที่จะทำรายการ?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "ยืนยัน",
+      cancelButtonText: "ยกเลิก",
+    }).then((result) => {
+      if (result.value) {
+        let path = "/user/passwordreset/" + login;
+        window.location.href = path;
+      } else {
+        return false;
+      }
+    })
+  });
+
+  $(".level_select").select2({
+    placeholder: "-- เลือก --",
+    width: "100%",
+    allowClear: true,
   });
 </script>

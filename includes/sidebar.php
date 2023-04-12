@@ -42,7 +42,7 @@ $group = (!empty($group) ? $group : "");
       </a>
       <ul id="service" class="nav-content <?php echo ($group === "service" ? "show" : "collapse") ?>">
         <li>
-          <a class="nav-link <?php echo ($page === "helpdesk" ? "active" : "collapsed") ?>" href="/home">
+          <a class="nav-link <?php echo ($page === "helpdesk" ? "active" : "collapsed") ?>" href="/helpdesk">
             <i class="fa fa-circle"></i> <span>ระบบแจ้งปัญหา</span>
           </a>
         </li>
@@ -101,7 +101,7 @@ $group = (!empty($group) ? $group : "");
           </a>
         </li>
         <li>
-          <a class="nav-link <?php echo ($page === "asset" ? "active" : "collapsed") ?>" href="/home">
+          <a class="nav-link <?php echo ($page === "asset" ? "active" : "collapsed") ?>" href="/asset">
             <i class="fa fa-circle"></i> <span>ข้อมูลทรัพย์สิน</span>
           </a>
         </li>

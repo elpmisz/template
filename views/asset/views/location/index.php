@@ -1,23 +1,23 @@
 <?php
-$page = "users";
+$page = "asset";
 $group = "setting";
 
-include_once(__DIR__ . "/../../includes/header.php");
-include_once(__DIR__ . "/../../includes/sidebar.php");
+include_once(__DIR__ . "/../../../../includes/header.php");
+include_once(__DIR__ . "/../../../../includes/sidebar.php");
 ?>
 
 <main id="main" class="main">
   <div class="row justify-content-center">
-    <?php include_once(__DIR__ . "/../../includes/alert.php"); ?>
+    <?php include_once(__DIR__ . "/../../../../includes/alert.php"); ?>
     <div class="col-xl-12">
       <div class="card shadow">
         <div class="card-header">
-          <h4 class="text-center">ข้อมูลผู้ใช้งาน</h4>
+          <h4 class="text-center">ข้อมูลสถานที่</h4>
         </div>
         <div class="card-body">
           <div class="row justify-content-end">
             <div class="col-xl-3 col-md-6">
-              <a href="/users/create" class="btn btn-sm btn-primary w-100">
+              <a href="/asset/location/create" class="btn btn-sm btn-primary w-100">
                 <i class="fa fa-plus pe-2"></i> เพิ่ม
               </a>
             </div>
@@ -30,12 +30,7 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
                   <thead>
                     <tr>
                       <th width="10%">#</th>
-                      <th width="10%">สิทธิ์</th>
-                      <th width="10%">รูป</th>
-                      <th width="10%">ชื่อผู้ใช้ระบบ</th>
-                      <th width="20%">ชื่อ - นามสกุล</th>
-                      <th width="10%">อีเมล</th>
-                      <th width="20%">ติดต่อ</th>
+                      <th width="90%">ชื่อ</th>
                     </tr>
                   </thead>
                 </table>
@@ -45,12 +40,20 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
 
         </div>
       </div>
+
+      <div class="row justify-content-center my-2">
+        <div class="col-xl-3 col-md-6">
+          <a href="/asset/manage" class="btn btn-danger btn-sm w-100">
+            <i class="fas fa-arrow-left pe-2"></i>กลับหน้าจัดการ
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </main>
 
 <?php
-include_once(__DIR__ . "/../../includes/footer.php");
+include_once(__DIR__ . "/../../../../includes/footer.php");
 ?>
 <script>
   filter_data();
@@ -62,11 +65,11 @@ include_once(__DIR__ . "/../../includes/footer.php");
       searching: true,
       order: [],
       ajax: {
-        url: "/users/data",
+        url: "/asset/location/data",
         type: "POST",
       },
       columnDefs: [{
-        targets: [0, 1, 2, 3],
+        targets: [0],
         className: "text-center",
       }],
       oLanguage: {

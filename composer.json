@@ -1,10 +1,16 @@
 {
-  "name": "worachit.pa/borrow",
+  "name": "worachit.pa/template",
   "autoload": {
     "psr-4": {
       "app\\": "./"
     }
   },
+  "authors": [
+    {
+      "name": "elpmisz",
+      "email": "worachit.pa@gmail.com"
+    }
+  ],
   "require": {
     "altorouter/altorouter": "^2.0",
     "twbs/bootstrap": "^5.2",

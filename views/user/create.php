@@ -12,7 +12,7 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
     <div class="col-xl-12">
       <div class="card shadow">
         <div class="card-header">
-          <h4 class="text-center">รายละเอียด</h4>
+          <h4 class="text-center">เพิ่ม</h4>
         </div>
         <div class="card-body">
           <form action="/user/admincreate" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
@@ -64,6 +64,11 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
                 <button type="submit" class="btn btn-primary btn-sm w-100">
                   <i class="fas fa-check pe-2"></i>ยืนยัน
                 </button>
+              </div>
+              <div class="col-xl-3 col-md-6">
+                <a href="/users" class="btn btn-danger btn-sm w-100">
+                  <i class="fas fa-arrow-left pe-2"></i>กลับหน้าหลัก
+                </a>
               </div>
             </div>
           </form>

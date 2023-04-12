@@ -96,6 +96,16 @@ class User
     return $stmt->execute($data);
   }
 
+  public function user_level($data)
+  {
+    $sql = "UPDATE user_login SET
+    level = ?,
+    updated = NOW()
+    WHERE id = ?";
+    $stmt = $this->dbcon->prepare($sql);
+    return $stmt->execute($data);
+  }
+
   public function picture_profile_name($data)
   {
     $sql = "SELECT picture FROM user_detail WHERE login_id = ?";

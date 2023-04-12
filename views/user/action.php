@@ -86,7 +86,9 @@ if ($method === "POST" && $action === "adminupdate") :
     $last_name = (isset($_POST['last_name']) ? $Validation->input($_POST['last_name']) : "");
     $email = (isset($_POST['email']) ? $Validation->input($_POST['email']) : "");
     $contact = (isset($_POST['contact']) ? $Validation->input($_POST['contact']) : "");
+    $level = (isset($_POST['level']) ? $Validation->input($_POST['level']) : "");
     $User->update([$first_name, $last_name, $email, $contact, $login__id, $login_id]);
+    $User->user_level([$level, $login_id]);
 
     if (isset($_FILES['picture']['name']) && !empty($_FILES['picture']['name'])) {
       $file_name = (isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : "");

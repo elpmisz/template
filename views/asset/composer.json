@@ -1,0 +1,15 @@
+{
+  "name": "worachit.pa/asset",
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
+    }
+  },
+  "authors": [
+    {
+      "name": "elpmisz",
+      "email": "worachit.pa@gmail.com"
+    }
+  ],
+  "require": {}
+}
