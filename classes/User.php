@@ -89,7 +89,7 @@ class User
     last_name = ?,
     email = ?,
     contact = ?,
-    user_update = ?,
+    user = ?,
     updated = NOW()
     WHERE login_id = ?";
     $stmt = $this->dbcon->prepare($sql);
@@ -119,7 +119,7 @@ class User
   {
     $sql = "UPDATE user_detail SET
     picture = ?,
-    user_update = ?,
+    user = ?,
     updated = NOW()
     WHERE login_id = ?";
     $stmt = $this->dbcon->prepare($sql);

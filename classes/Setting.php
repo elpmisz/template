@@ -19,7 +19,7 @@ class Setting
     email = ?,
     email_password = ?,
     default_password = ?,
-    user_update = ?,
+    user = ?,
     updated = NOW()
     WHERE 1";
     $stmt = $this->dbcon->prepare($sql);

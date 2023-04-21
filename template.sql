@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 12, 2023 at 07:54 AM
+-- Generation Time: Apr 21, 2023 at 09:47 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -147,6 +147,7 @@ INSERT INTO `asset_software` (`id`, `name`, `user`, `status`, `updated`, `create
 CREATE TABLE `asset_type` (
   `id` binary(20) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `checklist` varchar(100) NOT NULL,
   `user` binary(20) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '1',
   `updated` datetime DEFAULT NULL,
@@ -157,11 +158,43 @@ CREATE TABLE `asset_type` (
 -- Dumping data for table `asset_type`
 --
 
-INSERT INTO `asset_type` (`id`, `name`, `user`, `status`, `updated`, `created`) VALUES
-(0x32373034396661372d643865322d313165642d38, 'เครื่องพิมพ์ (Printer)', 0x31663937646434362d633330312d313165642d62, 1, NULL, '2023-04-12 10:28:53'),
-(0x36346436393032632d643864362d313165642d38, 'เครื่องคอมพิวเตอร์ (Computer)', 0x31663937646434362d633330312d313165642d62, 1, NULL, '2023-04-12 09:04:42'),
-(0x39346234306633352d643864382d313165642d38, 'เครื่องคอมพิวเตอร์พกพา (Notebook)', 0x31663937646434362d633330312d313165642d62, 1, '2023-04-12 10:04:24', '2023-04-12 09:20:22'),
-(0x39636130343165302d643864382d313165642d38, 'เครื่องสำรองไฟ (UPS)', 0x31663937646434362d633330312d313165642d62, 1, NULL, '2023-04-12 09:20:35');
+INSERT INTO `asset_type` (`id`, `name`, `checklist`, `user`, `status`, `updated`, `created`) VALUES
+(0x31323730393136392d646439662d313165642d62, 'testtest', '3ab6cdb0-d902-11ed-8,708e2246-d902-11ed-8,898d58aa-d902-11ed-8', 0x31663937646434362d633330312d313165642d62, 1, '2023-04-21 16:45:55', '2023-04-18 11:11:19'),
+(0x32373034396661372d643865322d313165642d38, 'เครื่องพิมพ์ (Printer)', '', 0x31663937646434362d633330312d313165642d62, 1, NULL, '2023-04-12 10:28:53'),
+(0x36346436393032632d643864362d313165642d38, 'เครื่องคอมพิวเตอร์ (Computer)', '', 0x31663937646434362d633330312d313165642d62, 1, NULL, '2023-04-12 09:04:42'),
+(0x39346234306633352d643864382d313165642d38, 'เครื่องคอมพิวเตอร์พกพา (Notebook)', '', 0x31663937646434362d633330312d313165642d62, 1, '2023-04-12 10:04:24', '2023-04-12 09:20:22'),
+(0x39636130343165302d643864382d313165642d38, 'เครื่องสำรองไฟ (UPS)', '', 0x31663937646434362d633330312d313165642d62, 1, NULL, '2023-04-12 09:20:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asset_type_item`
+--
+
+CREATE TABLE `asset_type_item` (
+  `id` binary(20) NOT NULL,
+  `type_id` binary(20) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `type` int(1) NOT NULL,
+  `text` text,
+  `required` int(1) NOT NULL DEFAULT '1',
+  `user` binary(20) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '1',
+  `updated` datetime DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `asset_type_item`
+--
+
+INSERT INTO `asset_type_item` (`id`, `type_id`, `name`, `type`, `text`, `required`, `user`, `status`, `updated`, `created`) VALUES
+(0x31323731336361302d646439662d313165642d62, 0x31323730393136392d646439662d313165642d62, 'AAAAA', 1, '', 1, 0x31663937646434362d633330312d313165642d62, 1, '2023-04-21 16:45:55', '2023-04-18 11:11:19'),
+(0x31323731623562372d646439662d313165642d62, 0x31323730393136392d646439662d313165642d62, 'BBBBB', 2, '', 1, 0x31663937646434362d633330312d313165642d62, 1, '2023-04-21 16:45:55', '2023-04-18 11:11:19'),
+(0x31323731666137642d646439662d313165642d62, 0x31323730393136392d646439662d313165642d62, 'CCCCC', 3, '11111,22222', 2, 0x31663937646434362d633330312d313165642d62, 1, '2023-04-21 16:45:55', '2023-04-18 11:11:19'),
+(0x31633137326530322d646461352d313165642d62, 0x31323730393136392d646439662d313165642d62, 'DDDDD', 1, '', 1, 0x31663937646434362d633330312d313165642d62, 1, '2023-04-21 16:45:55', '2023-04-18 11:54:32'),
+(0x31633137363564342d646461352d313165642d62, 0x31323730393136392d646439662d313165642d62, 'EEEEE', 4, '', 3, 0x31663937646434362d633330312d313165642d62, 1, '2023-04-21 16:45:55', '2023-04-18 11:54:32'),
+(0x31633137393732322d646461352d313165642d62, 0x31323730393136392d646439662d313165642d62, 'FFFFF', 3, '88888,99999', 2, 0x31663937646434362d633330312d313165642d62, 1, '2023-04-21 16:45:55', '2023-04-18 11:54:32');
 
 -- --------------------------------------------------------
 
@@ -175,7 +208,7 @@ CREATE TABLE `setting` (
   `email` varchar(100) NOT NULL,
   `email_password` varchar(100) NOT NULL,
   `default_password` varchar(50) NOT NULL,
-  `user_update` binary(20) DEFAULT NULL,
+  `user` binary(20) DEFAULT NULL,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -183,7 +216,7 @@ CREATE TABLE `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `name`, `email`, `email_password`, `default_password`, `user_update`, `updated`) VALUES
+INSERT INTO `setting` (`id`, `name`, `email`, `email_password`, `default_password`, `user`, `updated`) VALUES
 (0x37393865323130632d633362382d313165642d61, 'Demo', 'mail.enotify@gmail.com', 'vccsndpqkofdfeiw', 'testtest', 0x31663937646434362d633330312d313165642d62, '2023-03-31 11:52:04');
 
 -- --------------------------------------------------------
@@ -200,7 +233,7 @@ CREATE TABLE `user_detail` (
   `last_name` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `contact` varchar(100) DEFAULT NULL,
-  `user_update` binary(20) DEFAULT NULL,
+  `user` binary(20) DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -209,7 +242,7 @@ CREATE TABLE `user_detail` (
 -- Dumping data for table `user_detail`
 --
 
-INSERT INTO `user_detail` (`id`, `login_id`, `picture`, `first_name`, `last_name`, `email`, `contact`, `user_update`, `updated`, `created`) VALUES
+INSERT INTO `user_detail` (`id`, `login_id`, `picture`, `first_name`, `last_name`, `email`, `contact`, `user`, `updated`, `created`) VALUES
 (0x31663938386565372d633330312d313165642d62, 0x31663937646434362d633330312d313165642d62, '4dd0aaf19d0fb19d2c4d53e27c3c7127.jpeg', 'admin', 'test', 'admin@test.com', '', 0x31663937646434362d633330312d313165642d62, '2023-03-31 13:36:33', '2023-03-15 14:15:09'),
 (0x33653633393537332d636638652d313165642d62, 0x33653633303836312d636638652d313165642d62, NULL, 'user', 'test', 'user@test.com', '', 0x31663937646434362d633330312d313165642d62, '2023-04-11 14:34:01', '2023-03-31 13:35:34');
 
@@ -247,48 +280,58 @@ INSERT INTO `user_login` (`id`, `username`, `password`, `level`, `change`, `stat
 --
 ALTER TABLE `asset_brand`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_updated` (`user`);
+  ADD KEY `user` (`user`) USING BTREE;
 
 --
 -- Indexes for table `asset_checklist`
 --
 ALTER TABLE `asset_checklist`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_updated` (`user`);
+  ADD KEY `user` (`user`) USING BTREE;
 
 --
 -- Indexes for table `asset_location`
 --
 ALTER TABLE `asset_location`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_updated` (`user`);
+  ADD KEY `user` (`user`) USING BTREE;
 
 --
 -- Indexes for table `asset_software`
 --
 ALTER TABLE `asset_software`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_updated` (`user`);
+  ADD KEY `user` (`user`) USING BTREE;
 
 --
 -- Indexes for table `asset_type`
 --
 ALTER TABLE `asset_type`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_updated` (`user`);
+  ADD KEY `user` (`user`) USING BTREE;
+
+--
+-- Indexes for table `asset_type_item`
+--
+ALTER TABLE `asset_type_item`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user` (`user`),
+  ADD KEY `type_id` (`type_id`);
 
 --
 -- Indexes for table `setting`
 --
 ALTER TABLE `setting`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user` (`user`);
 
 --
 -- Indexes for table `user_detail`
 --
 ALTER TABLE `user_detail`
   ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD KEY `login_id` (`login_id`);
+  ADD KEY `login_id` (`login_id`),
+  ADD KEY `user` (`user`);
 
 --
 -- Indexes for table `user_login`

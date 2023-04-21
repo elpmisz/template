@@ -44,6 +44,14 @@ include_once(__DIR__ . "/../../../../includes/sidebar.php");
           </div>
         </div>
       </div>
+
+      <div class="row justify-content-center my-2">
+        <div class="col-xl-3 col-md-6">
+          <a href="/asset" class="btn btn-danger btn-sm w-100">
+            <i class="fas fa-arrow-left pe-2"></i>กลับหน้าหลัก
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </main>

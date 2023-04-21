@@ -61,12 +61,12 @@ $row = $Software->view([$id]);
             </div>
 
             <div class="row justify-content-center mb-2">
-              <div class="col-xl-3 col-md-6">
+              <div class="col-xl-3 col-md-6 mb-2">
                 <button type="submit" class="btn btn-primary btn-sm w-100">
                   <i class="fas fa-check pe-2"></i>ยืนยัน
                 </button>
               </div>
-              <div class="col-xl-3 col-md-6">
+              <div class="col-xl-3 col-md-6 mb-2">
                 <a href="/asset/software" class="btn btn-danger btn-sm w-100">
                   <i class="fas fa-arrow-left pe-2"></i>กลับหน้าหลัก
                 </a>

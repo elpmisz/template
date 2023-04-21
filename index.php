@@ -86,6 +86,12 @@ $Router->map("GET", "/asset/manage", function () {
 $Router->map("GET", "/asset/create", function () {
   require(__DIR__ . "/views/asset/views/home/create.php");
 });
+$Router->map("GET", "/asset/view/[**:params]", function ($params) {
+  require __DIR__ . "/views/asset/views/home/view.php";
+});
+$Router->map("POST", "/asset/home/[**:params]", function ($params) {
+  require __DIR__ . "/views/asset/views/home/action.php";
+});
 
 $Router->map("GET", "/asset/type", function () {
   require(__DIR__ . "/views/asset/views/type/index.php");

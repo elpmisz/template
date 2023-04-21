@@ -60,7 +60,7 @@ $row = $Checklist->view([$id]);
               </div>
             </div>
 
-            <div class="row div_reference">
+            <div class="row div-reference">
               <label class="col-xl-4 col-md-4 col-form-label text-xl-end">อ้างอิง (ยี่ห้อ)</label>
               <div class="col-xl-4 col-md-6">
                 <select class="form-control form-control-sm reference-select" name="reference">
@@ -90,12 +90,12 @@ $row = $Checklist->view([$id]);
             </div>
 
             <div class="row justify-content-center mb-2">
-              <div class="col-xl-3 col-md-6">
+              <div class="col-xl-3 col-md-6 mb-2">
                 <button type="submit" class="btn btn-primary btn-sm w-100">
                   <i class="fas fa-check pe-2"></i>ยืนยัน
                 </button>
               </div>
-              <div class="col-xl-3 col-md-6">
+              <div class="col-xl-3 col-md-6 mb-2">
                 <a href="/asset/checklist" class="btn btn-danger btn-sm w-100">
                   <i class="fas fa-arrow-left pe-2"></i>กลับหน้าหลัก
                 </a>
@@ -115,19 +115,19 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
   $(document).ready(function() {
     let type = parseInt($("input[name='type']:checked").val());
     if (type === 2) {
-      $(".div_reference").show();
+      $(".div-reference").show();
     } else {
-      $(".div_reference").hide();
+      $(".div-reference").hide();
     }
   });
 
   $(document).on("click", "input[name='type']", function() {
     let type = parseInt($(this).val());
     if (type === 2) {
-      $(".div_reference").show();
+      $(".div-reference").show();
       $(".reference-select").prop("required", true);
     } else {
-      $(".div_reference").hide();
+      $(".div-reference").hide();
       $(".reference-select").prop("required", false).empty();
     }
   });
