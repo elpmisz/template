@@ -23,6 +23,16 @@ $param2 = (isset($param[2]) ? $param[2] : '');
 $method = (isset($_SERVER['REQUEST_METHOD']) && !empty($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : "");
 $login__id = (isset($_SESSION['login_id']) && !empty($_SESSION['login_id']) ? $_SESSION['login_id'] : "");
 
+if ($method === "POST" && $action === "create") :
+  try {
+    echo "<pre>";
+    print_r($_POST);
+    print_r($_FILES);
+  } catch (PDOException $e) {
+    die($e->getMessage());
+  }
+endif;
+
 if ($method === "POST" && $action === "type-select") :
   try {
     $keyword = (isset($_POST['q']) ? $Validation->input($_POST['q']) : "");

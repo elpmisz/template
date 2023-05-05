@@ -120,7 +120,7 @@ include_once(__DIR__ . "/../../../../includes/sidebar.php");
                 <div class="row mb-2">
                   <label class="col-xl-4 col-md-4 col-form-label text-xl-end">วันที่ซื้อ</label>
                   <div class="col-xl-8 col-md-8">
-                    <input type="text" class="form-control form-control-sm" name="purchase_date">
+                    <input type="text" class="form-control form-control-sm date-select" name="purchase_date">
                     <div class="invalid-feedback">
                       กรุณาใส่ข้อมูลให้ครบ
                     </div>
@@ -130,7 +130,7 @@ include_once(__DIR__ . "/../../../../includes/sidebar.php");
                 <div class="row mb-2">
                   <label class="col-xl-4 col-md-4 col-form-label text-xl-end">วันที่หมดอายุ</label>
                   <div class="col-xl-8 col-md-8">
-                    <input type="text" class="form-control form-control-sm" name="expire_date">
+                    <input type="text" class="form-control form-control-sm date-select" name="expire_date">
                     <div class="invalid-feedback">
                       กรุณาใส่ข้อมูลให้ครบ
                     </div>
@@ -140,8 +140,7 @@ include_once(__DIR__ . "/../../../../includes/sidebar.php");
               </div>
             </div>
 
-            <div class="row mb-2 div-type-item">
-            </div>
+            <div class="row mb-2 div-type-item"></div>
 
             <div class="row justify-content-center mb-2">
               <div class="col-xl-3 col-md-6 mb-2">
@@ -265,6 +264,10 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
         $(".date-select").on("apply.daterangepicker", function(ev, picker) {
           $(this).val(picker.startDate.format('DD/MM/YYYY'));
         });
+
+        $(".date-select").on("keydown paste", function(e) {
+          e.preventDefault();
+        });
       }).catch(function(error) {
         console.log(error);
       });
@@ -344,6 +347,7 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
 
   $(document).on("change", ".brand-select", function() {
     let brand = $(this).val();
+    $(".model-select").empty();
     if (brand) {
       $(".model-select").prop("disabled", false);
       $(".model-select").prop("required", true);
@@ -374,5 +378,33 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
       $(".model-select").prop("disabled", true);
       $(".model-select").prop("required", false);
     }
+  });
+
+  $(".date-select").daterangepicker({
+    autoUpdateInput: false,
+    singleDatePicker: true,
+    showDropdowns: true,
+    locale: {
+      "format": "DD/MM/YYYY",
+      "applyLabel": "ยืนยัน",
+      "cancelLabel": "ยกเลิก",
+      "daysOfWeek": [
+        "อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"
+      ],
+      "monthNames": [
+        "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+        "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+      ]
+    },
+    "applyButtonClasses": "btn-success",
+    "cancelClass": "btn-danger"
+  });
+
+  $(".date-select").on("apply.daterangepicker", function(ev, picker) {
+    $(this).val(picker.startDate.format("DD/MM/YYYY"));
+  });
+
+  $(".date-select").on("keydown paste", function(e) {
+    e.preventDefault();
   });
 </script>

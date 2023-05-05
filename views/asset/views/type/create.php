@@ -79,7 +79,7 @@ include_once(__DIR__ . "/../../../../includes/sidebar.php");
                         </div>
                       </td>
                       <td>
-                        <select class="form-control form-control-sm" name="item_required[]" required>
+                        <select class="form-control form-control-sm required-select" name="item_required[]" required>
                           <option value="">-- เลือก --</option>
                           <?php
                           $data = ["ไม่จำเป็น", "จำเป็น", "อ่านเท่านั้น"];
@@ -141,14 +141,20 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
   });
 
   $(".type-select").select2({
-    placeholder: "-- ประเภท --",
+    placeholder: "-- เลือก --",
+    width: "100%",
+    allowClear: true,
+  });
+
+  $(".required-select").select2({
+    placeholder: "-- เลือก --",
     width: "100%",
     allowClear: true,
   });
 
   $(".decrease").hide();
   $(document).on("click", ".increase", function() {
-    $(".type-select").select2("destroy");
+    $(".type-select, .required-select").select2("destroy");
     let row = $(".tr-value:last");
     let clone = row.clone();
     clone.find("input, select").val("");
@@ -162,6 +168,12 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
 
     $(".type-select").select2({
       placeholder: "-- ประเภท --",
+      width: "100%",
+      allowClear: true,
+    });
+
+    $(".required-select").select2({
+      placeholder: "-- เลือก --",
       width: "100%",
       allowClear: true,
     });

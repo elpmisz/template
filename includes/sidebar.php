@@ -58,7 +58,7 @@ $group = (!empty($group) ? $group : "");
         </li>
         <li>
           <a class="nav-link <?php echo ($page === "reserve" ? "active" : "collapsed") ?>" href="/home">
-            <i class="fa fa-circle"></i> <span>จองรถ</span>
+            <i class="fa fa-circle"></i> <span>จองรถยนต์</span>
           </a>
         </li>
         <li>
