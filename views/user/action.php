@@ -40,7 +40,7 @@ if ($method === "POST" && $action === "update") :
       $file_extension = pathinfo(strtolower($file_name), PATHINFO_EXTENSION);
       $images_extension = ["jpg", "jpeg", "png"];
       $file_allow = array_merge($images_extension);
-      $file_rename = "{$file_random}.{$file_extension}";
+      $file_rename = "{$file_random}.webp";
       $file_path = (__DIR__ . "/../../assets/img/profile/{$file_rename}");
 
       if (!in_array($file_extension, $file_allow)) {
@@ -79,7 +79,7 @@ if ($method === "POST" && $action === "change") :
   }
 endif;
 
-if ($method === "POST" && $action === "adminupdate") :
+if ($method === "POST" && $action === "admin-update") :
   try {
     $login_id = (isset($_POST['login_id']) ? $Validation->input($_POST['login_id']) : "");
     $first_name = (isset($_POST['first_name']) ? $Validation->input($_POST['first_name']) : "");
@@ -97,7 +97,7 @@ if ($method === "POST" && $action === "adminupdate") :
       $file_extension = pathinfo(strtolower($file_name), PATHINFO_EXTENSION);
       $images_extension = ["jpg", "jpeg", "png"];
       $file_allow = array_merge($images_extension);
-      $file_rename = "{$file_random}.{$file_extension}";
+      $file_rename = "{$file_random}.webp";
       $file_path = (__DIR__ . "/../../assets/img/profile/{$file_rename}");
 
       if (!in_array($file_extension, $file_allow)) {
@@ -119,7 +119,7 @@ if ($method === "POST" && $action === "adminupdate") :
   }
 endif;
 
-if ($method === "POST" && $action === "admincreate") :
+if ($method === "POST" && $action === "admin-create") :
   try {
     $username = (isset($_POST['username']) ? $Validation->input($_POST['username']) : "");
     $first_name = (isset($_POST['first_name']) ? $Validation->input($_POST['first_name']) : "");
@@ -145,7 +145,7 @@ if ($method === "POST" && $action === "admincreate") :
   }
 endif;
 
-if ($method === "POST" && $action === "usernamecheck") :
+if ($method === "POST" && $action === "username-duplicate") :
   try {
     $username = (isset($_POST['username']) ? $Validation->input($_POST['username']) : "");
     $user_duplicate = $User->user_duplicate([$username]);
@@ -156,7 +156,7 @@ if ($method === "POST" && $action === "usernamecheck") :
   }
 endif;
 
-if ($method === "GET" && $action === "passwordreset") :
+if ($method === "GET" && $action === "password-reset") :
   try {
     $password = $Setting->password_default();
     $password_hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 15]);

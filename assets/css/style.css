@@ -402,3 +402,18 @@
   .sidebar-nav .nav-content a.active i {
 	  background-color: #4154f1;
   }
+
+
+  /*--------------------------------------------------------------
+  # Custom
+  --------------------------------------------------------------*/
+  .img-profile-fluid {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .img-table-fluid {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }

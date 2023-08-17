@@ -41,7 +41,7 @@ ini_set("display_errors", 1);
                   กรุณาใส่ข้อมูลให้ครบ
                 </div>
               </div>
-              <span class="text-check"></span>
+              <span class="offset-2 text-password-match"></span>
               <div class="input-group">
                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
                 <input type="password" class="form-control" placeholder="รหัสผ่านอีกครั้ง" name="password2" required>
@@ -71,17 +71,17 @@ ini_set("display_errors", 1);
   <script src="/vendor/components/jquery/jquery.min.js"></script>
   <script src="/assets/js/main.js"></script>
   <script>
-    $(".text-check").hide();
+    $(".text-password-match").hide();
     $(document).on("keyup", "input[name='password2']", function() {
-      $(".text-check").show();
+      $(".text-password-match").show();
       let password = $("input[name='password']").val();
       let password2 = $("input[name='password2']").val();
 
       if (password !== password2) {
-        $(".text-check").text("รหัสผ่านไม่ตรงกัน").removeClass("text-primary").addClass("text-danger");
+        $(".text-password-match").text("รหัสผ่านไม่ตรงกัน").removeClass("text-primary").addClass("text-danger");
         $("button[type='submit']").prop("disabled", true);
       } else {
-        $(".text-check").text("รหัสผ่านตรงกัน").removeClass("text-danger").addClass("text-primary");
+        $(".text-password-match").text("รหัสผ่านตรงกัน").removeClass("text-danger").addClass("text-primary");
         $("button[type='submit']").prop("disabled", false);
       }
     });

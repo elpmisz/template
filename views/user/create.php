@@ -15,7 +15,7 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
           <h4 class="text-center">เพิ่ม</h4>
         </div>
         <div class="card-body">
-          <form action="/user/admincreate" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
+          <form action="/user/admin-create" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
             <div class="row mb-2">
               <label class="col-xl-4 col-md-4 col-form-label text-xl-end">ชื่อผู้ใช้ระบบ</label>
               <div class="col-xl-4 col-md-6">
@@ -25,8 +25,8 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
                 </div>
               </div>
             </div>
-            <div class="row mb-2 div_textcheck">
-              <label class="col-xl-4 col-md-4 offset-md-4 offset-xl-4 col-form-label text-check"></label>
+            <div class="row mb-2 div-username-duplicate">
+              <label class="col-xl-4 col-md-4 offset-md-4 offset-xl-4 col-form-label text-username-duplicate"></label>
             </div>
             <div class="row mb-2">
               <label class="col-xl-4 col-md-4 col-form-label text-xl-end">ชื่อ - นามสกุล</label>
@@ -82,23 +82,23 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
 include_once(__DIR__ . "/../../includes/footer.php");
 ?>
 <script>
-  $(".div_textcheck").hide();
+  $(".div-username-duplicate").hide();
   $(document).on("keyup", "input[name='username']", function() {
     let username = $(this).val();
     $.ajax({
-      url: "/user/usernamecheck",
+      url: "/user/username-duplicate",
       method: "POST",
       data: {
         username: username
       },
       dataType: 'json',
       success: function(data) {
-        $(".div_textcheck").show();
+        $(".div-username-duplicate").show();
         if (parseInt(data) === 0) {
-          $(".div_textcheck").hide();
+          $(".div-username-duplicate").hide();
           $("button[type='submit']").prop("disabled", false);
         } else {
-          $(".text-check").text("ชื่อผู้ใช้งานระบบซ้ำ").removeClass("text-primary").addClass("text-danger");
+          $(".text-username-duplicate").text("ชื่อผู้ใช้งานระบบซ้ำ").removeClass("text-primary").addClass("text-danger");
           $("button[type='submit']").prop("disabled", true);
         }
       }

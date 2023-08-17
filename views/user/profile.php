@@ -45,7 +45,7 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
                   <div class="card shadow">
                     <div class="card-body">
                       <form action="/user/update" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
-                        <div class="row justify-content-center div_show mb-2">
+                        <div class="row justify-content-center div-show-image mb-2">
                           <div class="col-sm-2">
                             <img src="" class="rounded img-fluid show-image" alt="show-image">
                           </div>
@@ -113,7 +113,7 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
                         </div>
                         <div class="row mb-2">
                           <div class="col-xl-4 offset-xl-4 col-md-4 offset-md-4">
-                            <span class="text-check"></span>
+                            <span class="text-password-match"></span>
                           </div>
                         </div>
                         <div class="row mb-2">
@@ -149,22 +149,22 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
 include_once(__DIR__ . "/../../includes/footer.php");
 ?>
 <script>
-  $(".text-check").hide();
+  $(".text-password-match").hide();
   $(document).on("keyup", "input[name='password2']", function() {
-    $(".text-check").show();
+    $(".text-password-match").show();
     let password = $("input[name='password']").val();
     let password2 = $("input[name='password2']").val();
 
     if (password !== password2) {
-      $(".text-check").text("รหัสผ่านไม่ตรงกัน").removeClass("text-primary").addClass("text-danger");
+      $(".text-password-match").text("รหัสผ่านไม่ตรงกัน").removeClass("text-primary").addClass("text-danger");
       $("button[type='submit']").prop("disabled", true);
     } else {
-      $(".text-check").text("รหัสผ่านตรงกัน").removeClass("text-danger").addClass("text-primary");
+      $(".text-password-match").text("รหัสผ่านตรงกัน").removeClass("text-danger").addClass("text-primary");
       $("button[type='submit']").prop("disabled", false);
     }
   });
 
-  $(".div_show").hide();
+  $(".div-show-image").hide();
   $(document).on("change", "input[name='picture']", function() {
     let file = $(this).val();
     let size = this.files[0].size / (1024 * 1024);
@@ -187,9 +187,9 @@ include_once(__DIR__ . "/../../includes/footer.php");
         title: "เฉพาะไฟล์รูปภาพ PNG และ JPG เท่านั้น",
       })
       $(this).val("");
-      $(".div_show").hide();
+      $(".div-show-image").hide();
     } else {
-      $(".div_show").show();
+      $(".div-show-image").show();
       $(".show-image").prop("src", url);
       URL.revokeObjectURL($(".show-image").prop("src", url));
     }

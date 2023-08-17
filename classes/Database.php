@@ -8,6 +8,7 @@ use PDOException;
 class Database
 {
   private $dbCon = null;
+  private $dbStmt = null;
   private $dbHost = "localhost";
   private $dbUser = "example";
   private $dbPass = "P@ssw0rd#db";
@@ -35,5 +36,15 @@ class Database
   public function getConnection()
   {
     return $this->dbCon;
+  }
+
+  public function __destruct()
+  {
+    if ($this->dbStmt !== null) {
+      $this->dbStmt = null;
+    }
+    if ($this->dbCon !== null) {
+      $this->dbCon = null;
+    }
   }
 }

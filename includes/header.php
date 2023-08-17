@@ -22,7 +22,7 @@ $user = $User->view([$login__id]);
 $setting = $Setting->view();
 
 $setting_brand = (isset($setting['name']) && !empty($setting['name']) ? $setting['name'] : "");
-$fullname = (isset($user['fullname']) && !empty($user['fullname']) ? $user['fullname'] : "")
+$fullname = (isset($user['fullname']) && !empty($user['fullname']) ? $user['fullname'] : "");
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -8,6 +8,7 @@ include_once(__DIR__ . "/../../includes/sidebar.php");
 $param = (isset($params) ? explode(",", $params) : "");
 $id = (!empty($param[0]) ? $param[0] : "");
 $row = $User->view([$id]);
+$picture = (!empty($row['picture']) ? $row['picture'] : "no-img.png");
 ?>
 
 <main id="main" class="main">
@@ -19,7 +20,7 @@ $row = $User->view([$id]);
           <h4 class="text-center">รายละเอียด</h4>
         </div>
         <div class="card-body">
-          <form action="/user/adminupdate" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
+          <form action="/user/admin-update" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
             <div class="row mb-2" style="display: none;">
               <label class="col-xl-4 col-md-4 col-form-label text-xl-end">รหัส</label>
               <div class="col-xl-4 col-md-6">
@@ -28,10 +29,12 @@ $row = $User->view([$id]);
             </div>
             <div class="row justify-content-center mb-2">
               <div class="col-sm-2">
-                <img src="/assets/img/profile/<?php echo (!empty($row['picture']) ? $row['picture'] : "no-img.png") ?>" class="rounded img-fluid" alt="profile-image">
+                <a href="/assets/img/profile/<?php echo $picture ?>" target="_blank">
+                  <img src="/assets/img/profile/<?php echo $picture ?>" class="rounded img-profile-fluid" alt="profile-image">
+                </a>
               </div>
             </div>
-            <div class="row justify-content-center div_show mb-2">
+            <div class="row justify-content-center div-show-image mb-2">
               <div class="col-sm-2">
                 <img src="" class="rounded img-fluid show-image" alt="show-image">
               </div>
@@ -85,12 +88,13 @@ $row = $User->view([$id]);
                 <select class="form-control form-control-sm level_select" name="level">
                   <option value="">-- เลือก --</option>
                   <?php
-                  $arr = [
+                  $level = [
                     1 => "ผู้ใช้งาน",
                     9 => "ผู้ดูแลระบบ"
                   ];
-                  foreach ($arr as $key => $value) {
-                    echo "<option value='{$key}' " . ($row['level'] === $key ? "selected" : "") . ">{$value}</option>\n";
+                  foreach ($level as $key => $value) {
+                    $selected = ($row['level'] === $key ? "selected" : "");
+                    echo "<option value='{$key}' {$selected}>{$value}</option>\n";
                   }
                   unset($key, $value);
                   ?>
@@ -129,7 +133,7 @@ $row = $User->view([$id]);
 include_once(__DIR__ . "/../../includes/footer.php");
 ?>
 <script>
-  $(".div_show").hide();
+  $(".div-show-image").hide();
   $(document).on("change", "input[name='picture']", function() {
     let file = $(this).val();
     let size = this.files[0].size / (1024 * 1024);
@@ -152,9 +156,9 @@ include_once(__DIR__ . "/../../includes/footer.php");
         title: "เฉพาะไฟล์รูปภาพ PNG และ JPG เท่านั้น",
       })
       $(this).val("");
-      $(".div_show").hide();
+      $(".div-show-image").hide();
     } else {
-      $(".div_show").show();
+      $(".div-show-image").show();
       $(".show-image").prop("src", url);
       URL.revokeObjectURL($(".show-image").prop("src", url));
     }
@@ -173,7 +177,7 @@ include_once(__DIR__ . "/../../includes/footer.php");
       cancelButtonText: "ยกเลิก",
     }).then((result) => {
       if (result.value) {
-        let path = "/user/passwordreset/" + login;
+        let path = "/user/password-reset/" + login;
         window.location.href = path;
       } else {
         return false;
