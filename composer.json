@@ -19,13 +19,13 @@
     "select2/select2": "^4.0",
     "datatables/datatables": "^1.10",
     "myclabs/deep-copy": "1.7.0",
-    "paragonie/random_compat": "2.0.19",
-    "mpdf/mpdf": "^8.1",
+    "paragonie/random_compat": "2.0.21",
+    "mpdf/mpdf": "8.0.17",
     "moment/moment": "2.26.0",
-    "fullcalendar/fullcalendar": "3.10.2",
+    "fullcalendar/fullcalendar": "3.10.5",
     "phpmailer/phpmailer": "^6.6",
     "pnikolov/bootstrap-daterangepicker": "^2.1",
-    "phpoffice/phpspreadsheet": "^1.8"
+    "phpoffice/phpspreadsheet": "1.8.2"
   },
   "config": {
     "allow-plugins": {
