@@ -29,38 +29,38 @@ $limit_start = (isset($_POST['start']) ? $_POST['start'] : "");
 $limit_length = (isset($_POST['length']) ? $_POST['length'] : "");
 $draw = (isset($_POST['draw']) ? $_POST['draw'] : "");
 
-$sql = "SELECT A.id,A.name,B.name reference_name,
+$sql = "SELECT a.id,a.name,b.name reference_name,
 (
   CASE
-    WHEN A.status = 1 THEN 'รายละเอียด'
-    WHEN A.status = 2 THEN 'ระงับการใช้งาน'
+    WHEN a.status = 1 THEN 'รายละเอียด'
+    WHEN a.status = 2 THEN 'ระงับการใช้งาน'
     ELSE NULL
   END
 ) status_name,
 (
   CASE
-    WHEN A.status = 1 THEN 'primary'
-    WHEN A.status = 2 THEN 'danger'
+    WHEN a.status = 1 THEN 'primary'
+    WHEN a.status = 2 THEN 'danger'
     ELSE NULL
   END
 ) status_color
-FROM asset_checklist A 
-LEFT JOIN asset_checklist B
-ON A.reference = B.id
-WHERE A.id != '' ";
+FROM asset_checklist a
+LEFT JOIN asset_checklist b
+ON a.reference = b.id
+WHERE a.id != '' ";
 
 if ($keyword) {
-  $sql .= " AND (A.name LIKE '%{$keyword}%' OR B.name LIKE '%{$keyword}%') ";
+  $sql .= " AND (a.name LIKE '%{$keyword}%' OR b.name LIKE '%{$keyword}%') ";
 }
 
 if ($reference) {
-  $sql .= " AND (A.id = '{$reference}' OR A.reference = '{$reference}') ";
+  $sql .= " AND (a.id = '{$reference}' OR a.reference = '{$reference}') ";
 }
 
 if ($order) {
   $sql .= "ORDER BY {$column[$order_column]} {$order_dir} ";
 } else {
-  $sql .= "ORDER BY A.status ASC, A.type ASC, A.created ASC ";
+  $sql .= "ORDER BY a.status ASC, a.type ASC, a.created ASC ";
 }
 
 $query = "";

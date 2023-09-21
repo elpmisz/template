@@ -35,11 +35,11 @@ class Brand
 
   public function view($data)
   {
-    $sql = "SELECT A.id,A.name,A.type,A.reference,B.name reference_name,A.status
-    FROM asset_brand A 
-    LEFT JOIN asset_brand B
-    ON A.reference = B.id
-    WHERE A.id = ?";
+    $sql = "SELECT a.id,a.name,a.type,a.reference,b.name reference_name,a.status
+    FROM asset_brand a 
+    LEFT JOIN asset_brand b
+    ON a.reference = b.id
+    WHERE a.id = ?";
     $stmt = $this->dbcon->prepare($sql);
     $stmt->execute($data);
     return $stmt->fetch();

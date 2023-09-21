@@ -48,15 +48,15 @@ class Query
 
   public function user_select($keyword)
   {
-    $sql = "SELECT A.login_id id,CONCAT('K.',A.first_name,' ',A.last_name) text
-    FROM user_detail A
-    LEFT JOIN user_login B
-    ON A.login_id = B.id
-    WHERE B.status = 1 ";
+    $sql = "SELECT a.login_id id,CONCAT('K.',a.first_name,' ',a.last_name) text
+    FROM user_detail a
+    LEFT JOIN user_login b
+    ON a.login_id = b.id
+    WHERE b.status = 1 ";
     if (!empty($keyword)) {
       $sql .= " AND (first_name LIKE '%{$keyword}%' OR last_name LIKE '%{$keyword}%' OR email LIKE '%{$keyword}%') ";
     }
-    $sql .= " ORDER BY B.created ASC";
+    $sql .= " ORDER BY b.created ASC";
     $stmt = $this->dbcon->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll();

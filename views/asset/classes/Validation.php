@@ -58,8 +58,8 @@ class Validation
 
   public function picture_upload($tmp, $path)
   {
-    $imageInfo   = (isset($tmp) ? getimagesize($tmp) : '');
-    $imageWidth   = 800;
+    $imageInfo   = (isset($tmp) ? getimagesize($tmp) : "");
+    $imageWidth   = 1200;
     $imageHeight = (isset($imageInfo) ? round($imageWidth * $imageInfo[1] / $imageInfo[0]) : '');
     $imageType    = $imageInfo[2];
 
@@ -69,16 +69,21 @@ class Validation
       $imageY = imagesy($imageResource);
       $imageTarget = imagecreatetruecolor($imageWidth, $imageHeight);
       imagecopyresampled($imageTarget, $imageResource, 0, 0, 0, 0, $imageWidth, $imageHeight, $imageX, $imageY);
-      imagewebp($imageTarget, $path, 100);
-      imagedestroy($imageTarget);
-    } else {
+      imagepng($imageTarget, $path);
+    } elseif ($imageType === IMAGETYPE_JPEG) {
       $imageResource = imagecreatefromjpeg($tmp);
       $imageX = imagesx($imageResource);
       $imageY = imagesy($imageResource);
       $imageTarget = imagecreatetruecolor($imageWidth, $imageHeight);
       imagecopyresampled($imageTarget, $imageResource, 0, 0, 0, 0, $imageWidth, $imageHeight, $imageX, $imageY);
-      imagewebp($imageTarget, $path, 100);
-      imagedestroy($imageTarget);
+      imagejpeg($imageTarget, $path);
+    } else {
+      $imageResource = imagecreatefrompng($tmp);
+      $imageX = imagesx($imageResource);
+      $imageY = imagesy($imageResource);
+      $imageTarget = imagecreatetruecolor($imageWidth, $imageHeight);
+      imagecopyresampled($imageTarget, $imageResource, 0, 0, 0, 0, $imageWidth, $imageHeight, $imageX, $imageY);
+      imagewebp($imageTarget, $path);
     }
   }
 
@@ -87,16 +92,34 @@ class Validation
     return unlink(__DIR__ . "/../assets/img/profile/{$data}");
   }
 
-  public function line_notify($text, $token)
+  public function line_notify($token, $message = null, $image = null, $stickerPid = null, $stickerId = null)
   {
+    $message = (!empty($message) ? $message : "ไม่มีข้อความ");
+    $image = (!empty($image) ? $image : "");
+    if (!empty($image)) {
+      $path = dirname(__FILE__) . "/assets/img/line/{$image}";
+      $imageFile = curl_file_create($path);
+    }
+    $stickerPid = (!empty($stickerPid) ? $stickerPid : "");
+    $stickerId = (!empty($stickerId) ? $stickerId : "");
+    // $stickerPid = 11537;
+    // $stickerId = 52002748;
+
+    $data = array(
+      "message" => $message,
+      "imageFile" => $imageFile,
+      "stickerPackageId" => $stickerPid,
+      "stickerId" => $stickerId,
+    );
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "message={$text}");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-    $headers = ["Content-type: application/x-www-form-urlencoded", "Authorization: Bearer {$token}",];
+    $headers = array("Content-type: multipart/form-data", "Authorization: Bearer {$token}",);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $result = curl_exec($ch);

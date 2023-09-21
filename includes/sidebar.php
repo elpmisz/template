@@ -52,38 +52,8 @@ $group = (!empty($group) ? $group : "");
           </a>
         </li>
         <li>
-          <a class="nav-link <?php echo ($page === "meeting" ? "active" : "collapsed") ?>" href="/home">
-            <i class="fa fa-circle"></i> <span>จองห้องประชุม</span>
-          </a>
-        </li>
-        <li>
-          <a class="nav-link <?php echo ($page === "reserve" ? "active" : "collapsed") ?>" href="/home">
-            <i class="fa fa-circle"></i> <span>จองรถยนต์</span>
-          </a>
-        </li>
-        <li>
           <a class="nav-link <?php echo ($page === "preventive" ? "active" : "collapsed") ?>" href="/home">
             <i class="fa fa-circle"></i> <span>ระบบบำรุงรักษาอุปกรณ์</span>
-          </a>
-        </li>
-        <li>
-          <a class="nav-link <?php echo ($page === "event" ? "active" : "collapsed") ?>" href="/home">
-            <i class="fa fa-circle"></i> <span>ระบบประชาสัมพันธ์</span>
-          </a>
-        </li>
-        <li>
-          <a class="nav-link <?php echo ($page === "form" ? "active" : "collapsed") ?>" href="/home">
-            <i class="fa fa-circle"></i> <span>ระบบรายการตรวจสอบ</span>
-          </a>
-        </li>
-        <li>
-          <a class="nav-link <?php echo ($page === "document" ? "active" : "collapsed") ?>" href="/home">
-            <i class="fa fa-circle"></i> <span>ระบบจัดการเอกสาร</span>
-          </a>
-        </li>
-        <li>
-          <a class="nav-link <?php echo ($page === "inventory" ? "active" : "collapsed") ?>" href="/home">
-            <i class="fa fa-circle"></i> <span>ระบบเบิกวัสดุ - อุปกรณ์</span>
           </a>
         </li>
       </ul>
@@ -103,11 +73,6 @@ $group = (!empty($group) ? $group : "");
         <li>
           <a class="nav-link <?php echo ($page === "asset" ? "active" : "collapsed") ?>" href="/asset">
             <i class="fa fa-circle"></i> <span>ข้อมูลทรัพย์สิน</span>
-          </a>
-        </li>
-        <li>
-          <a class="nav-link <?php echo ($page === "inventory" ? "active" : "collapsed") ?>" href="/home">
-            <i class="fa fa-circle"></i> <span>ข้อมูลวัสดุ - อุปกรณ์</span>
           </a>
         </li>
         <li>

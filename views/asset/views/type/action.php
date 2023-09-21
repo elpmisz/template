@@ -84,10 +84,10 @@ if ($method === "POST" && $action === "update") :
   }
 endif;
 
-if ($method === "POST" && $action === "item-delete") :
+if ($method === "GET" && $action === "item-delete") :
   try {
-    echo "<pre>";
-    print_r($param);
+    $Type->item_delete([$param1]);
+    $Validation->alert("success", "ดำเนินการเรียบร้อยแล้ว", "/asset/type/view/{$param2}");
   } catch (PDOException $e) {
     die($e->getMessage());
   }

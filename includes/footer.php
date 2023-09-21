@@ -13,6 +13,7 @@
 <script src="/assets/js/jquery.dataTables.min.js"></script>
 <script src="/assets/js/dataTables.bootstrap.min.js"></script>
 <script src="/assets/js/sweetalert2.all.min.js"></script>
+<script src="/assets/js/axios.min.js"></script>
 <script src="/assets/js/main.js"></script>
 
 </body>

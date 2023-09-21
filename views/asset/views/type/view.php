@@ -295,10 +295,9 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
     }
   });
 
-  $(document).on("click", ".item-delete", (e) => {
+  $(document).on("click", ".item-delete", function(e) {
     let item = $(this).prop("id");
     let request = $("input[name='id']").val();
-    console.log(item)
     e.preventDefault();
     Swal.fire({
       title: "ลบข้อมูล?",
@@ -310,7 +309,7 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
       cancelButtonText: "ยกเลิก",
     }).then((result) => {
       if (result.value) {
-        window.location.href = "/asset/type/item-delete/" + item + "/" + request;
+        window.location.href = ("/asset/type/item-delete/" + item + "/" + request);
       } else {
         return false;
       }

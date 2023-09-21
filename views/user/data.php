@@ -12,11 +12,12 @@ require_once(__DIR__ . "/../../vendor/autoload.php");
 
 $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "");
 
-$stmt = $dbcon->prepare("SELECT COUNT(*) FROM user_login");
+$sql = "SELECT COUNT(*) FROM user_login";
+$stmt = $dbcon->prepare($sql);
 $stmt->execute();
 $count = $stmt->fetchColumn();
 
-$column = ["a.status", "a.id", "b.first_name", "a.username", "b.email", "a.level"];
+$column = ["a.status", "a.level", "a.id", "b.first_name", "a.username", "b.email", "a.level"];
 
 $keyword = (isset($_POST['search']['value']) ? $_POST['search']['value'] : "");
 $order = (isset($_POST['order']) ? $_POST['order'] : "");
@@ -61,7 +62,6 @@ LEFT JOIN user_detail b
 ON a.id = b.login_id
 WHERE a.id != '' ";
 
-
 if ($keyword) {
   $sql .= " AND (b.first_name LIKE '%{$keyword}%' OR b.last_name LIKE '%{$keyword}%' OR b.email LIKE '%{$keyword}%' OR b.contact LIKE '%{$keyword}%') ";
 }
@@ -88,11 +88,13 @@ $data = [];
 foreach ($result as $row) {
   $level = "<span class='badge text-bg-{$row['level_color']} fw-lighter'>{$row['level_name']}</span>";
   $status = "<a href='/users/view/{$row['login_id']}' class='badge text-bg-{$row['status_color']} fw-lighter'>{$row['status_name']}</a>";
-  if (!empty($row['picture'])) :
+
+  if (!empty($row['picture'])) {
     $image = "<a href='/assets/img/profile/{$row['picture']}' target='_blank'><img src='/assets/img/profile/{$row['picture']}' class='img-table-fluid rounded shadow'></a>";
-  else :
+  } else {
     $image = "<img src='/assets/img/profile/no-img.png' class='img-table-fluid rounded shadow'>";
-  endif;
+  }
+
   $data[] = [
     $status,
     $level,

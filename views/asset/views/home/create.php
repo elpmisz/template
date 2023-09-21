@@ -128,7 +128,7 @@ include_once(__DIR__ . "/../../../../includes/sidebar.php");
                 </div>
 
                 <div class="row mb-2">
-                  <label class="col-xl-4 col-md-4 col-form-label text-xl-end">วันที่หมดอายุ</label>
+                  <label class="col-xl-4 col-md-4 col-form-label text-xl-end">วันที่หมดประกัน</label>
                   <div class="col-xl-8 col-md-8">
                     <input type="text" class="form-control form-control-sm date-select" name="expire_date">
                     <div class="invalid-feedback">
@@ -185,21 +185,13 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
     let data = {
       type: type
     };
-    fetch("/asset/home/asset-type-item", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
+    axios.post("/asset/home/asset-type-item", data)
       .then(function(res) {
-        return res.json();
-      })
-      .then(function(data) {
-        if (data.length > 0) {
+        const result = res.data;
+        if (result.length > 0) {
           $(".div-type-item").show();
           let div = '';
-          data.forEach((v, k) => {
+          result.forEach((v, k) => {
             let type = parseInt(v.type);
             div += '<div class="col-sm-6">';
             div += '<div class="row mb-2">';

@@ -47,7 +47,7 @@ include_once(__DIR__ . "/../../../../includes/sidebar.php");
 
       <div class="row justify-content-center my-2">
         <div class="col-xl-3 col-md-6">
-          <a href="/asset/manage" class="btn btn-danger btn-sm w-100">
+          <a href="/asset" class="btn btn-danger btn-sm w-100">
             <i class="fas fa-arrow-left pe-2"></i>กลับหน้าจัดการ
           </a>
         </div>
@@ -83,8 +83,8 @@ include_once(__DIR__ . "/../../../../includes/footer.php");
         sLengthMenu: "แสดง _MENU_ ลำดับ ต่อหน้า",
         sZeroRecords: "ไม่พบข้อมูลที่ค้นหา",
         sInfo: "แสดง _START_ ถึง _END_ ของ _TOTAL_ ลำดับ",
-        sInfoEmpty: "แสดง 0 ถึง 0 ของ 0 ลำดับ",
-        sInfoFiltered: "(จากทั้งหมด _MAX_ ลำดับ)",
+        sInfoEmpty: "",
+        sInfoFiltered: "",
         sSearch: "ค้นหา :",
         oPaginate: {
           sFirst: "หน้าแรก",

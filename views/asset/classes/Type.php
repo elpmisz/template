@@ -73,6 +73,13 @@ class Type
     return $stmt->fetchAll();
   }
 
+  public function item_delete($data)
+  {
+    $sql = "DELETE FROM asset_type_item WHERE id = ?";
+    $stmt = $this->dbcon->prepare($sql);
+    return $stmt->execute($data);
+  }
+
   public function type_id($data)
   {
     $sql = "SELECT id
@@ -86,11 +93,11 @@ class Type
 
   public function checklist_view($data)
   {
-    $sql = "SELECT B.id,B.name
-    FROM asset_type A
-    LEFT JOIN asset_checklist B
-    ON FIND_IN_SET(B.id, A.checklist)
-    WHERE A.id = ?";
+    $sql = "SELECT b.id,b.name
+    FROM asset_type a
+    LEFT JOIN asset_checklist b
+    ON FIND_IN_SET(b.id, a.checklist)
+    WHERE a.id = ?";
     $stmt = $this->dbcon->prepare($sql);
     $stmt->execute($data);
     return $stmt->fetchAll();

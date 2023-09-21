@@ -55,7 +55,7 @@ include_once(__DIR__ . "/../../includes/footer.php");
 <script>
   filter_data();
 
-  function filter_data(status) {
+  function filter_data() {
     let data = $(".data").DataTable({
       serverSide: true,
       scrollX: true,
@@ -73,8 +73,8 @@ include_once(__DIR__ . "/../../includes/footer.php");
         sLengthMenu: "แสดง _MENU_ ลำดับ ต่อหน้า",
         sZeroRecords: "ไม่พบข้อมูลที่ค้นหา",
         sInfo: "แสดง _START_ ถึง _END_ ของ _TOTAL_ ลำดับ",
-        sInfoEmpty: "แสดง 0 ถึง 0 ของ 0 ลำดับ",
-        sInfoFiltered: "(จากทั้งหมด _MAX_ ลำดับ)",
+        sInfoEmpty: "",
+        sInfoFiltered: "",
         sSearch: "ค้นหา :",
         oPaginate: {
           sFirst: "หน้าแรก",

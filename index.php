@@ -80,9 +80,6 @@ $Router->map("GET", "/helpdesk/create", function () {
 $Router->map("GET", "/asset", function () {
   require(__DIR__ . "/views/asset/views/home/index.php");
 });
-$Router->map("GET", "/asset/manage", function () {
-  require(__DIR__ . "/views/asset/views/home/manage.php");
-});
 $Router->map("GET", "/asset/create", function () {
   require(__DIR__ . "/views/asset/views/home/create.php");
 });
@@ -106,6 +103,9 @@ $Router->map("GET", "/asset/type/view/[**:params]", function ($params) {
   require __DIR__ . "/views/asset/views/type/view.php";
 });
 $Router->map("POST", "/asset/type/[**:params]", function ($params) {
+  require __DIR__ . "/views/asset/views/type/action.php";
+});
+$Router->map("GET", "/asset/type/[**:params]", function ($params) {
   require __DIR__ . "/views/asset/views/type/action.php";
 });
 
